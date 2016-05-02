@@ -1,2 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" />
+<items version="2" >
+
+    <item
+        jar="C:\GroupProjects\brush3\wear\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\22.0.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="c6d79137693d494dee16372d3921f919eb724ced">
+        <dex dex="C:\GroupProjects\brush3\wear\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-recyclerview-v7-22.0.0_76be0e281941af0e7897907f897bb8dcb24f6a86\classes.dex" />
+    </item>
+    <item
+        jar="C:\GroupProjects\brush3\phonewatchlib\build\libs\phonewatchlib.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="f5b419c7cac2e11920b21c121bcd7a6be376e242">
+        <dex dex="C:\GroupProjects\brush3\wear\build\intermediates\transforms\dex\debug\folders\1000\10\phonewatchlib_230a37cd9aaa5c7c987f7ce58d35cca7f7f46744\classes.dex" />
+    </item>
+    <item
+        jar="C:\GroupProjects\brush3\wear\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.1\jars\libs\internal_impl-23.1.1.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="a4de9c81ae239414e1ed0f86441b02abaf29bca9">
+        <dex dex="C:\GroupProjects\brush3\wear\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-23.1.1_536d04bbc5725f0ea95907c6b3d6ca3754ace756\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\Aspire\AppData\Local\Android\sdk1\extras\android\m2repository\com\android\support\support-annotations\23.1.1\support-annotations-23.1.1.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="8d680ba5a623724d1fb0e81c36a790f023a6cede">
+        <dex dex="C:\GroupProjects\brush3\wear\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-23.1.1_ed4e39d5828b2f8aedd93d8717c7672f6a8643a6\classes.dex" />
+    </item>
+    <item
+        jar="C:\GroupProjects\brush3\wear\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.1\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="6cbc7773921fcfedbe55657578f0cbfe614778dc">
+        <dex dex="C:\GroupProjects\brush3\wear\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-23.1.1_c5a28850188e04255cf9833b3dd9aa08f6a8045b\classes.dex" />
+    </item>
+    <item
+        jar="C:\GroupProjects\brush3\wear\build\intermediates\exploded-aar\pl.droidsonroids.gif\android-gif-drawable\1.1.7\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="d6825a79ca6c134dd6f26fc15eff443b5215dbdc">
+        <dex dex="C:\GroupProjects\brush3\wear\build\intermediates\transforms\dex\debug\folders\1000\10\pl.droidsonroids.gif-android-gif-drawable-1.1.7_4dfdf2c183282f8b9be4a1f802b017972cd3bb50\classes.dex" />
+    </item>
+    <item
+        jar="C:\GroupProjects\brush3\wear\build\intermediates\exploded-aar\com.google.android.support\wearable\1.3.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="58b928ccbaf9090c632f278d6bd31e1ae42f2457">
+        <dex dex="C:\GroupProjects\brush3\wear\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.support-wearable-1.3.0_a9f72555a2024193efb1cc966108ff99cd705450\classes.dex" />
+    </item>
+    <item
+        jar="C:\GroupProjects\brush3\wear\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\8.3.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="345a1b5cf5b144ce18ba6962bc66a7e2f26c1c1b">
+        <dex dex="C:\GroupProjects\brush3\wear\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-basement-8.3.0_81edc6befca83d24a09d6b1a0887123d25587f1c\classes.dex" />
+    </item>
+    <item
+        jar="C:\GroupProjects\brush3\wear\build\intermediates\exploded-aar\com.google.android.gms\play-services-wearable\8.3.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="9aedc597d74c6d77258ce5236e9abff0c3cc65e3">
+        <dex dex="C:\GroupProjects\brush3\wear\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-wearable-8.3.0_6b13e1dbcdf2be4e043970adffabb4c35f67edaa\classes.dex" />
+    </item>
+    <item
+        jar="C:\GroupProjects\brush3\wear\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\8.3.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="01a90bbb9495a8bbf6f3cfdf12f1b35caaa9524b">
+        <dex dex="C:\GroupProjects\brush3\wear\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-base-8.3.0_ddc6d1a5f62a32ebc36c804b8ba78dce93e039a4\classes.dex" />
+    </item>
+
+</items>
