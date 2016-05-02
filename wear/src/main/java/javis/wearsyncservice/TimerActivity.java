@@ -22,12 +22,12 @@ import java.util.HashMap;
 
 public class TimerActivity extends WearableActivity {
 
-    private TextView mTimerTextView;
+    private MirroredTextView mTimerTextView;
     private RelativeLayout mCircularView;
     private RelativeLayout mHorizontalView;
     private RelativeLayout mVerticalView;
     private RelativeLayout mSideView;
-    private TextView mSideViewText;
+    private MirroredTextView mSideViewText;
     private RelativeLayout mClean;
     private ImageView mTopTeeth;
     private ImageView mBotTeeth;
@@ -48,12 +48,12 @@ public class TimerActivity extends WearableActivity {
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
-        mTimerTextView = (TextView) findViewById(R.id.timer);
+        mTimerTextView = (MirroredTextView) findViewById(R.id.timer);
         mCircularView = (RelativeLayout) findViewById(R.id.circular);
         mHorizontalView = (RelativeLayout) findViewById(R.id.horizontal);
         mVerticalView =  (RelativeLayout) findViewById(R.id.vertical);
         mSideView = (RelativeLayout) findViewById(R.id.brushside);
-        mSideViewText = (TextView) findViewById(R.id.brushside_text);
+        mSideViewText = (MirroredTextView) findViewById(R.id.brushside_text);
         mClean = (RelativeLayout) findViewById(R.id.clean);
         mRelativeLayout = (RelativeLayout) findViewById(R.id.back);
 
@@ -176,7 +176,7 @@ public class TimerActivity extends WearableActivity {
 
                 // color code
                 mTimerTextView.setText(millisToString(millisUntilFinished, initialTime*3));
-                if (speed < 25) {
+                if (speed < 37) {
                     if (doCount) {
                         if (last_stop - millisUntilFinished > 5000) {
                             mRelativeLayout.setBackgroundColor(0xffeb5757);

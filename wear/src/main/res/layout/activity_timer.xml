@@ -8,7 +8,7 @@
     tools:context="com.example.aspire.brushwatch.Timer"
     tools:deviceIds="wear_round">
 
-    <TextView
+    <javis.wearsyncservice.MirroredTextView
         android:id="@+id/timer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -96,7 +96,7 @@
 
         </RelativeLayout>
 
-        <TextView
+        <javis.wearsyncservice.MirroredTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
@@ -120,7 +120,7 @@
 
         </RelativeLayout>
 
-        <TextView
+        <javis.wearsyncservice.MirroredTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
@@ -144,7 +144,7 @@
 
         </RelativeLayout>
 
-        <TextView
+        <javis.wearsyncservice.MirroredTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
@@ -161,7 +161,7 @@
         android:visibility="invisible"
         android:layout_alignParentStart="true">
 
-        <TextView
+        <javis.wearsyncservice.MirroredTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
@@ -170,7 +170,7 @@
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true" />
 
-        <TextView
+        <javis.wearsyncservice.MirroredTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
