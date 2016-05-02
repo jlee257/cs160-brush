@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.io.FileInputStream;
 import java.util.Calendar;
@@ -23,23 +24,27 @@ public class DashboardDay extends SlidingMenuActivity {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
+    private TextView mainNameView;
+    private SharedPreferences getSettings;
+    final String SETTINGS_FILE = "BRUSH_SETTINGS";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        /*super.onCreate(savedInstanceState);
-        setContentView(R.layout.dashboard_day);*/
+//        super.onCreate(savedInstanceState);
+//        setContentView(R.layout.dashboard_day);
         String[] days = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
 //
-//        SharedPreferences data = getPreferences(0); //sSharedPreferences(SCORES)     for storing data
         SharedPreferences data = getSharedPreferences("SCORES", MODE_PRIVATE);
         SharedPreferences.Editor editor = getSharedPreferences("SCORES", MODE_PRIVATE).edit();
 
         String day_score = data.getString("score_day", "0_0_0_0_0__0_0_0_0_0");
+//        String first_time = data.getString("first_attempt", null);
 
-//        SharedPreferences.Editor editor = data.edit(); //to edit data
 //        //if day of the week is Sunday, reset the data for the week
         Calendar c = Calendar.getInstance();
         int val = c.get(Calendar.DAY_OF_WEEK);
+
         String day = days[val-1];
 
         if (day.equals("Sunday")) {
@@ -52,6 +57,7 @@ public class DashboardDay extends SlidingMenuActivity {
 
         if (data.getString("day", null) == null) {
             editor.putString("day", day);
+            editor.putInt("first_attempt", 0);
         }
         Log.d("hey", day);
         if (!day.equals(data.getString("day", null))) {
@@ -59,16 +65,9 @@ public class DashboardDay extends SlidingMenuActivity {
             editor.putString("day", day);
             //reset the scores
             editor.putString("score_day", "0_0_0_0_0__0_0_0_0_0");
+            editor.putInt("first_attempt", 0); // Haven brushed for today
         }
-//        //dummy data, get real data
-//        editor.putInt("Sun", 90);
-//        editor.putInt("Mon", 86);
-//        editor.putInt("Tue", 85);
-//        editor.putInt("Wed", 80);
-//        editor.putInt("Thu", 75);
-//        editor.putInt("Fri", 80);
-//        editor.putInt("Sat", 85);
-//
+
         editor.apply();
 
         if (savedInstanceState!=null)
@@ -90,21 +89,18 @@ public class DashboardDay extends SlidingMenuActivity {
 
 
         this.setTitle("Dashboard");
-//        SharedPreferences accessor = getSharedPreferences("WATCHSCORES", MODE_PRIVATE);
-//        SharedPreferences.Editor editor = getSharedPreferences("WATCHSCORES", MODE_PRIVATE).edit();
-//
-//        //Set the number of notifications
-//        String score_data =  accessor.getString("SCOREDATA", null);
-////        if (notification_data != null) {
-////            new_data = notification_data + "__" + new_data;
-////        }
-////        Log.d("SharedPref", "Data adding to SP = " + new_data);
-////        editor.putString("notification_data", new_data);
-//        editor.commit();
-
-//        String[] tempScores = {"1_86_60_40_70", "2_4_0_50_43"};
         Log.d("AEFfeaer", ""+ day_score);
         String[] tempScores = day_score.split("__"); // 2 underscores '__'
+
+        getSettings = getSharedPreferences(SETTINGS_FILE, MODE_PRIVATE);
+        String name = getSettings.getString("FIRST_NAME", "No Name");
+        Log.d("Settings Saved", name);
+        if (name.equals(""))
+        {
+            name = "Your child";
+        }
+        mainNameView = (TextView) findViewById(R.id.Name);
+        mainNameView.setText(name);
 
         mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
         mRecyclerView.setHasFixedSize(true);

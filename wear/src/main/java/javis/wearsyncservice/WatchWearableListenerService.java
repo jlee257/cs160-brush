@@ -31,7 +31,7 @@ public class WatchWearableListenerService extends WearableListenerService {
             Context ct = getApplication();
             if (receivedText.startsWith("MSG;"))
             {
-                showNotification(ct); // Show encouragement message
+                showNotification(ct, receivedText.substring(receivedText.indexOf(';')+1)); // Show encouragement message
             }
             else
             {
@@ -52,7 +52,7 @@ public class WatchWearableListenerService extends WearableListenerService {
         sendBroadcast(intent);
     }
 
-    public Notification buildNotification(Context mContext) {
+    public Notification buildNotification(Context mContext, String real_msg) {
 
 
         Bitmap bitmap = Bitmap.createBitmap(320,320, Bitmap.Config.ARGB_8888);
@@ -69,7 +69,7 @@ public class WatchWearableListenerService extends WearableListenerService {
 
         Notification.Builder builder = new Notification.Builder(mContext)
                 .setContentTitle("Brush!")
-                .setContentText("Good job, Honey!")
+                .setContentText(real_msg)
                 .setSmallIcon(R.drawable.notif_icon_fox)
                 .setDefaults(Notification.DEFAULT_ALL)
                 .extend(extender);
@@ -82,8 +82,8 @@ public class WatchWearableListenerService extends WearableListenerService {
     }
 
     @TargetApi(23)
-    public void showNotification(Context mContext) {
-        Notification notification = buildNotification(mContext);
+    public void showNotification(Context mContext, String real_msg) {
+        Notification notification = buildNotification(mContext, real_msg);
 
         NotificationManager manager = (NotificationManager)
                 mContext.getSystemService(Context.NOTIFICATION_SERVICE);

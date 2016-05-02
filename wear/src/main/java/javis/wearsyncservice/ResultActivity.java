@@ -33,11 +33,11 @@ public class ResultActivity extends Activity {
 
         }
 
-        circular_score = cCount*0.3f + cTime*0.7f;
-        vertical_score = vCount*0.3f + vTime*0.7f;
-        horizontal_score = hCount*0.3f + hTime*0.7f;
+        circular_score = 100 - (cCount*0.3f + cTime*0.7f)*2f;
+        vertical_score = 100 - (vCount*0.3f + vTime*0.7f)*2f;
+        horizontal_score = 100 - (hCount*0.3f + hTime*0.7f)*2f;
 
-        overall_score = (circular_score + vertical_score + horizontal_score)/3;
+        overall_score = (circular_score + vertical_score + horizontal_score)/3f;
         String score = overall_score + "_" + circular_score + "_" + vertical_score + "_" + horizontal_score;
         fireMessage(score);
         Log.d("Result", score);

@@ -58,7 +58,7 @@ public class DashboardAdapter extends RecyclerView.Adapter<DashboardAdapter.View
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
 
-        String[] vals = mDataset[position].split("_"); // [overallscore_circular_vertical_horizontal]
+        String[] vals = mDataset[position].split("_"); // [timeOfDay_overallscore_circular_vertical_horizontal]
         Log.d("Adapta", "pso = " + position);
 
         if (position % 2 == 1) { // odd
@@ -78,7 +78,7 @@ public class DashboardAdapter extends RecyclerView.Adapter<DashboardAdapter.View
         }
 //        holder.mTimeOfDay ==
 
-        holder.mTextView.setText(vals[1]);
+        holder.mTextView.setText(String.valueOf((int) Float.parseFloat(vals[1])));
         // bar scores
         float cs = Float.parseFloat(vals[2]);
         float vs = Float.parseFloat(vals[3]);

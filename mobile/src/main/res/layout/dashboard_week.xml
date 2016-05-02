@@ -61,15 +61,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="ANDREW"
-            android:id="@+id/Name"
+            android:id="@+id/NameWeek"
             android:layout_alignParentTop="false"
             android:layout_alignStart="@+id/pic_text"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="30dp"
             android:textColor="@color/darkGrey"
-            android:textStyle="bold"
-            android:textSize="16dp"
-            android:layout_alignParentEnd="false"
-            android:layout_marginRight="140dp" />
+            android:textSize="24dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginLeft="100dp" />
 
         <LinearLayout
             android:orientation="vertical"

@@ -7,8 +7,10 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.androidplot.xy.BoundaryMode;
 import com.androidplot.xy.LineAndPointFormatter;
@@ -27,6 +29,8 @@ import java.util.Calendar;
 
 public class DashboardWeek extends SlidingMenuActivity {
 
+    final String SETTINGS_FILE = "BRUSH_SETTINGS";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -40,12 +44,14 @@ public class DashboardWeek extends SlidingMenuActivity {
         SharedPreferences.Editor editor = getSharedPreferences("SCORES", MODE_PRIVATE).edit();
         SharedPreferences data = getSharedPreferences("SCORES", MODE_PRIVATE);
 
+
+
         String day_score = data.getString("score_day", "0_TBD_0_0_0");
 
         //if day of the week is Sunday, reset the data for the week
         Calendar c = Calendar.getInstance();
         int val = c.get(Calendar.DAY_OF_WEEK);
-        String day = days[val];
+        String day = days[val-1];
         if (day.equals("Sunday")) {
             resetData(data);
         }
@@ -82,6 +88,16 @@ public class DashboardWeek extends SlidingMenuActivity {
         Bitmap bmp = getImageBitmap(this, "profile","BMP");;
         ImageView img = (ImageView) findViewById(R.id.cropped_final);
         img.setImageDrawable(new RoundedAvatarDrawable(bmp));
+
+        SharedPreferences getSettings = getSharedPreferences(SETTINGS_FILE, MODE_PRIVATE);
+        String name = getSettings.getString("FIRST_NAME", "No Name");
+        Log.d("Settingszzzs Saved", name);
+        if (name.equals(""))
+        {
+            name = "Your child";
+        }
+        TextView mainNameView = (TextView) findViewById(R.id.NameWeek);
+        mainNameView.setText(name);
 
         //this is beginning of plot stuff
         XYPlot mySimpleXYPlot;

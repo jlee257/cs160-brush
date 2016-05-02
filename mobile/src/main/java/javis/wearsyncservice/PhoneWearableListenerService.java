@@ -38,6 +38,10 @@ public class PhoneWearableListenerService extends WearableListenerService {
                 data = time_of_day + "_" + receivedText;
                 Log.d("PHONE Ddfa", data);
                 saveToSharedPreferences(data);
+
+                Intent startDashboardDay = new Intent(this, DashboardDay.class);
+                startDashboardDay.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(startDashboardDay);
             }
             broadcastIntent(data);
         } else {
@@ -46,8 +50,17 @@ public class PhoneWearableListenerService extends WearableListenerService {
     }
 
     public void saveToSharedPreferences(String data) {
+        SharedPreferences accessor = getSharedPreferences("SCORES", MODE_PRIVATE);
         SharedPreferences.Editor editor = getSharedPreferences("SCORES", MODE_PRIVATE).edit();
-        editor.putString("score_day", data + "__");
+        int first_attempt = accessor.getInt("first_attempt", 0);
+        if (first_attempt == 0) { // No one has brushed today
+            editor.putString("score_day", data);
+            editor.putInt("first_attempt", 1);
+        } else {
+            String previousData = accessor.getString("score_day", "");
+            editor.putString("score_day", previousData + "__" + data); // compund the scores
+        }
+
         editor.commit();
     }
 

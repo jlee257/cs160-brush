@@ -2,7 +2,10 @@ package javis.wearsyncservice;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -10,12 +13,15 @@ import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.FileInputStream;
 
-public class settings extends Activity {
+
+public class settings extends SlidingMenuActivity {
 
     final String SETTINGS_FILE = "BRUSH_SETTINGS";
     private SharedPreferences settings;
@@ -41,9 +47,35 @@ public class settings extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
-        setContentView(R.layout.settings);
+        //super.onCreate(savedInstanceState);
+        //getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+        //setContentView(R.layout.settings);
+
+        if (savedInstanceState!=null)
+        {
+            savedInstanceState.putString("TITLE", "SETTINGS");
+            savedInstanceState.putInt("LAYOUT", R.layout.settings);
+            savedInstanceState.putInt("LAYOUT_ID", 34534);
+            super.onCreate(savedInstanceState);
+        }
+
+        else
+        {
+            Bundle b = new Bundle();
+            b.putString("TITLE", "SETTINGS");
+            b.putInt("LAYOUT", R.layout.settings);
+            b.putInt("LAYOUT_ID", 34534); //id of top level Relative/Linear etc Layout
+            super.onCreate(b);
+        }
+
+        SharedPreferences getSettings = getSharedPreferences(SETTINGS_FILE, MODE_PRIVATE);
+        String name = getSettings.getString("FIRST_NAME", "No Name :(");
+        if (name.equals(""))
+        {
+            name = "Your child";
+        }
+        TextView mainNameView = (TextView) findViewById(R.id.Name);
+        mainNameView.setText(name);
 
         cancel_button = (RelativeLayout) findViewById(R.id.cancel_button);
         edit_button = (RelativeLayout) findViewById(R.id.edit_button);
@@ -55,12 +87,22 @@ public class settings extends Activity {
         view_left_hand = (TextView) findViewById(R.id.textViewLeft);
         view_right_hand = (TextView) findViewById(R.id.textViewRight);
 
-
+        Bitmap bmp = getImageBitmap(this, "profile","BMP");;
+        ImageView img = (ImageView) findViewById(R.id.cropped_final);
+        img.setImageDrawable(new RoundedAvatarDrawable(bmp));
 
         // get shared preferences
         settings = getSharedPreferences(SETTINGS_FILE, MODE_PRIVATE);
         first_name = settings.getString("FIRST_NAME", "Andrew");
+        if (first_name.equals(""))
+        {
+            first_name = "     ";
+        }
         last_name = settings.getString("LAST_NAME", "Smith");
+        if (last_name.equals(""))
+        {
+            last_name = "     ";
+        }
         age = settings.getInt("AGE", 5);
         is_male = settings.getBoolean("IS_MALE", true);
         is_left_hand = settings.getBoolean("IS_LEFT_HAND", true);
@@ -190,4 +232,51 @@ public class settings extends Activity {
             local_is_left_hand = false;
         }
     }
+
+    public Bitmap getImageBitmap(Context context,String name,String extension){
+        name=name+"."+extension;
+        try{
+            FileInputStream fis = context.openFileInput(name);
+            Bitmap b = BitmapFactory.decodeStream(fis);
+            fis.close();
+            return b;
+        }
+        catch(Exception e){
+        }
+        //return null;
+        //If there is no selected image displays the fox icon
+        Bitmap Icon = BitmapFactory.decodeResource(getResources(), R.drawable.foxicon);
+        return Icon;
+    }
+
+    public void settings_photo_selection(View w)
+    /**
+     * Called onClick of the purple photo button. Brings up the
+     * photo selection dialog
+     */
+    {
+        Log.d("BAZOOKA", "DETECTED THE PHOTO BUTTON CLICK");
+        Intent intent = new Intent(this, CircCropActivity.class);
+        startActivityForResult(intent, CircCropImplementation.BITMAP_REQUEST_CODE);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Log.d("BAZOOKA", "back from selecting the photo");
+        Bitmap bmp = getImageBitmap(this, "profile","BMP");
+        ImageView img = (ImageView) findViewById(R.id.cropped_final);
+        img.setImageDrawable(new RoundedAvatarDrawable(bmp));
+        /*switch(requestCode) {
+            case (MY_CHILD_ACTIVITY) : {
+                if (resultCode == Activity.RESULT_OK) {
+                    // TODO Extract the data returned from the child Activity.
+                }
+                break;
+            }
+        }*/
+    }
+
+
+
 }

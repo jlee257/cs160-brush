@@ -6,14 +6,81 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:paddingTop="@dimen/activity_vertical_margin">
 
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/buchanan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        xmlns:ProgressWheel="http://schemas.android.com/apk/res-auto"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        tools:context="edu.berkeley.cs160.trial.MainActivity">
+
+        <!--<RelativeLayout-->
+        <!--android:layout_width="150dp"-->
+        <!--android:layout_height="150dp"-->
+        <!--android:layout_centerVertical="true"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:id="@+id/daisy"></RelativeLayout>-->
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="92dp"
+            android:id="@+id/panel"
+            android:src="@drawable/circlepanel"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="75dp"
+            android:id="@+id/cropped_final"
+            android:layout_alignParentEnd="false"
+            android:layout_alignParentStart="false"
+            android:layout_marginRight="239dp"
+            android:layout_marginTop="8dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="has brushed his teeth once today."
+            android:id="@+id/pic_text"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="40dp"
+            android:textSize="14dp"
+            android:layout_alignLeft="@+id/cropped_final"
+            android:textColor="@color/darkGrey"
+            android:layout_marginLeft="100dp"
+            android:layout_marginBottom="5dp"
+            android:visibility="invisible" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ANDREW"
+            android:id="@+id/Name"
+            android:layout_alignParentTop="false"
+            android:layout_alignStart="@+id/pic_text"
+            android:layout_marginTop="30dp"
+            android:textColor="@color/darkGrey"
+            android:textSize="24dp"
+            android:layout_alignParentEnd="false"
+            android:layout_marginRight="140dp" />
+    </RelativeLayout>
+
     <TimePicker
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/alarmTimePicker"
-        android:layout_alignParentTop="true"
+        android:layout_alignParentTop="false"
         android:layout_centerHorizontal="true"
         android:background="@color/white"
-        android:timePickerMode="spinner"/>
+        android:timePickerMode="spinner"
+        android:layout_below="@+id/buchanan"
+        android:rotationX="360"
+        android:layout_marginTop="20dp" />
+
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -27,12 +94,13 @@
             android:id="@+id/repeat_notif"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="repeat"
+            android:text="repeat daily"
             android:layout_centerVertical="true"
             android:layout_weight="1"
             android:layout_gravity="left"
-            android:layout_alignParentStart="true"
-            android:paddingLeft="16dp"/>
+            android:layout_alignParentStart="false"
+            android:paddingLeft="16dp"
+            android:layout_alignParentEnd="true" />
         />
 
 
@@ -41,7 +109,9 @@
             android:layout_height="50dp"
             android:id="@+id/repeat_switch"
             android:paddingRight="16dp"
-            android:layout_alignParentRight="true"/>
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="false"
+            android:layout_alignParentStart="true" />
 
     </RelativeLayout>
 
@@ -70,7 +140,8 @@
             android:text="alarm"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:paddingRight="16dp"/>
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp" />
 
     </RelativeLayout>
 
@@ -90,12 +161,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/pink"
-        android:layout_alignParentEnd="true"
+        android:layout_alignParentEnd="false"
         android:layout_alignParentBottom="true"
         android:onClick="save"
         android:text="SAVE"
         android:background="@null"
         android:padding="16dp"
-        />
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

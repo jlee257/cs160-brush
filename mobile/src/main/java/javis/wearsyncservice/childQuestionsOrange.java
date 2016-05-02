@@ -3,11 +3,14 @@ package javis.wearsyncservice;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.io.FileInputStream;
 
@@ -15,6 +18,8 @@ import java.io.FileInputStream;
  * Created by Me on 4/19/16.
  */
 public class childQuestionsOrange extends Activity {
+
+    final String SETTINGS_FILE = "BRUSH_SETTINGS";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +29,16 @@ public class childQuestionsOrange extends Activity {
         Bitmap bmp = getImageBitmap(this, "profile","BMP");;
         ImageView img = (ImageView) findViewById(R.id.cropped_final);
         img.setImageDrawable(new RoundedAvatarDrawable(bmp));
+
+        SharedPreferences getSettings = getSharedPreferences(SETTINGS_FILE, MODE_PRIVATE);
+        String name = getSettings.getString("FIRST_NAME", "your child");
+        if (name.equals(""))
+        {
+            name = "your child";
+        }
+        Log.d("Settings Saved", name);
+        TextView mainNameView = (TextView) findViewById(R.id.question);
+        mainNameView.setText("When was " + name + "'s toothbrush last replaced?");
 
     }
 

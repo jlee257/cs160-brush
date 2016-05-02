@@ -185,7 +185,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/dashboard_score_view"
-        android:background="@color/white"
+        android:background="@color/lightGrey"
         android:layout_centerVertical="true"
         android:text="Send message"
         android:textColor="@color/darkGrey"

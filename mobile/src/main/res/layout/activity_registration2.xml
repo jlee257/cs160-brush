@@ -42,7 +42,8 @@
         android:layout_marginTop="20dp"
         android:text="finish"
         android:textAllCaps="false"
-        android:textColor="@color/darkGrey" />
+        android:textColor="@color/darkGrey"
+        android:onClick="go_to_pink_q" />
 
     <ImageView
         android:layout_width="170dp"
@@ -153,7 +154,8 @@
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:layout_toLeftOf="@+id/textView11"
                     android:textColor="@color/orange"
-                    android:id="@+id/textViewLeft" />
+                    android:id="@+id/textViewLeft"
+                    android:onClick="selectLeftHand"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -171,7 +173,8 @@
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:layout_alignParentEnd="true"
                     android:textColor="@color/darkGrey"
-                    android:id="@+id/textViewRight" />
+                    android:id="@+id/textViewRight"
+                    android:onClick="selectRightHand"/>
 
                 <RelativeLayout
                     android:layout_width="match_parent"
