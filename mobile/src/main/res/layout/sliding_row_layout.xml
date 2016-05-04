@@ -5,7 +5,9 @@
 <LinearLayout
     android:layout_height="fill_parent"
     android:layout_width="fill_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/row"
+    android:clickable="false">
 
     <TextView
         android:layout_width="wrap_content"

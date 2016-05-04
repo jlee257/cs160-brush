@@ -42,7 +42,8 @@
         android:layout_marginTop="20dp"
         android:text="next"
         android:textAllCaps="false"
-        android:textColor="@color/darkGrey" />
+        android:textColor="@color/darkGrey"
+        android:onClick="go_to_2_registration" />
 
     <ImageView
         android:layout_width="170dp"
@@ -72,7 +73,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="sign up with your child&apos;s info"
-        android:id="@+id/textView2"
+        android:id="@+id/instruction"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="15dp"
@@ -88,6 +89,150 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="230dp">
 
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:paddingTop="30dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="30dp"
+            android:id="@+id/questions">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/first_name"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="first name"
+                    android:textColor="@color/darkGrey"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:id="@+id/textView2" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/orange"
+                    android:id="@+id/editTextFirstName"
+                    android:text=""
+                    android:textAlignment="textEnd" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/darkGrey"
+                    android:layout_alignParentEnd="false"
+                    android:layout_below="@+id/textView2">
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:id="@+id/last_name">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="last name"
+                    android:textColor="@color/darkGrey"
+                    android:id="@+id/textView3" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/orange"
+                    android:textAlignment="textEnd"
+                    android:background="@android:color/transparent"
+                    android:text=""
+                    android:id="@+id/editTextLastName" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/darkGrey"
+                    android:layout_alignParentEnd="false"
+                    android:layout_below="@+id/textView3">
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:id="@+id/gender">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="gender"
+                    android:textColor="@color/darkGrey"
+                    android:id="@+id/textView4" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="male"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_toLeftOf="@+id/textView12"
+                    android:textColor="@color/orange"
+                    android:id="@+id/textViewMale"
+                    android:onClick="genderMale"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" / "
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_toLeftOf="@+id/textViewFemale"
+                    android:textColor="@color/darkGrey"
+                    android:id="@+id/textView12" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="female"
+                    android:textColor="@color/darkGrey"
+                    android:id="@+id/textViewFemale"
+                    android:onClick="genderFemale"/>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/darkGrey"
+                    android:layout_alignParentEnd="false"
+                    android:layout_below="@+id/textView4">
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:id="@+id/age">
+
+            </RelativeLayout>
+        </LinearLayout>
+
     </LinearLayout>
+
+
 
 </RelativeLayout>

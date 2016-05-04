@@ -42,7 +42,8 @@
         android:layout_marginTop="20dp"
         android:text="finish"
         android:textAllCaps="false"
-        android:textColor="@color/darkGrey" />
+        android:textColor="@color/darkGrey"
+        android:onClick="go_to_pink_q" />
 
     <ImageView
         android:layout_width="170dp"
@@ -87,6 +88,104 @@
         android:layout_marginLeft="70dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="230dp">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:paddingTop="30dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="30dp"
+            android:id="@+id/questions">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:id="@+id/age">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="age"
+                    android:textColor="@color/darkGrey"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:id="@+id/textView7" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/orange"
+                    android:background="@android:color/transparent"
+                    android:textAlignment="textEnd"
+                    android:id="@+id/editTextAge" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/darkGrey"
+                    android:layout_alignParentEnd="false"
+                    android:layout_below="@+id/textView7">
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:id="@+id/dominant_hand">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="dominant hand"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/darkGrey"
+                    android:id="@+id/textView8" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="left"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_toLeftOf="@+id/textView11"
+                    android:textColor="@color/orange"
+                    android:id="@+id/textViewLeft"
+                    android:onClick="selectLeftHand"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" / "
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_toLeftOf="@+id/textViewRight"
+                    android:textColor="@color/darkGrey"
+                    android:id="@+id/textView11" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="right"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_alignParentEnd="true"
+                    android:textColor="@color/darkGrey"
+                    android:id="@+id/textViewRight"
+                    android:onClick="selectRightHand"/>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/darkGrey"
+                    android:layout_alignParentEnd="false"
+                    android:layout_below="@+id/textView8">
+                </RelativeLayout>
+
+            </RelativeLayout>
+        </LinearLayout>
 
     </LinearLayout>
 

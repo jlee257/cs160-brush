@@ -58,26 +58,31 @@ public class DashboardAdapter extends RecyclerView.Adapter<DashboardAdapter.View
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
 
-        String[] vals = mDataset[position].split("_"); // [overallscore_circular_vertical_horizontal]
+        String[] vals = mDataset[position].split("_"); // [timeOfDay_overallscore_circular_vertical_horizontal]
         Log.d("Adapta", "pso = " + position);
+
         if (position % 2 == 1) { // odd
             holder.cardView.setCardBackgroundColor(holder.cardView.getResources().getColor(R.color.lightblue));
+            holder.mTimeOfDay.setText("Evening");
         } else {
             holder.cardView.setCardBackgroundColor(holder.cardView.getResources().getColor(R.color.periwinkle));
+            holder.mTimeOfDay.setText("Morning");
+
         }
         // TODO Time of Day
-        if (Integer.parseInt(vals[0]) == 1) {
+//        if (Integer.parseInt(vals[0]) == 1) {
+        if(vals[0].equals("AM")) {
             holder.mTimeOfDay.setText("Morning");
-        } else {
+        } else if(vals[0].equals("PM")){
             holder.mTimeOfDay.setText("Evening");
         }
 //        holder.mTimeOfDay ==
 
-        holder.mTextView.setText(vals[1]);
+        holder.mTextView.setText(String.valueOf((int) Float.parseFloat(vals[1])));
         // bar scores
-        int cs = Integer.parseInt(vals[2]);
-        int vs = Integer.parseInt(vals[3]);
-        int hs = Integer.parseInt(vals[4]);
+        float cs = Float.parseFloat(vals[2]);
+        float vs = Float.parseFloat(vals[3]);
+        float hs = Float.parseFloat(vals[4]);
         int full_width = holder.circularBar.getMaxWidth();
 
         float new_width1 = full_width * ((float) cs/100f);

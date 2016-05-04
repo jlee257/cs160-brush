@@ -13,9 +13,12 @@ import android.os.Vibrator;
 import android.support.wearable.activity.WearableActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import java.util.HashMap;
 
 public class TimerActivity extends WearableActivity {
 
@@ -29,6 +32,7 @@ public class TimerActivity extends WearableActivity {
     private ImageView mTopTeeth;
     private ImageView mBotTeeth;
 
+    public HashMap<String, Integer> motion_counts = new HashMap<>();
 
     private TextView mAcce;
     private MyReceiver myReceiver;
@@ -41,6 +45,8 @@ public class TimerActivity extends WearableActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timer);
+
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
         mTimerTextView = (TextView) findViewById(R.id.timer);
         mCircularView = (RelativeLayout) findViewById(R.id.circular);
@@ -56,6 +62,11 @@ public class TimerActivity extends WearableActivity {
 
         final Vibrator vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
         vibrator.vibrate(500);
+
+        // Add initialize HashMap values
+        motion_counts.put("cCount", 0); motion_counts.put("cTime", 0);
+        motion_counts.put("hCount", 0); motion_counts.put("hTime", 0);
+        motion_counts.put("vCount", 0); motion_counts.put("vTime", 0);
 
 
         // Set BroadcastReceiver
@@ -93,7 +104,9 @@ public class TimerActivity extends WearableActivity {
 
             private int redCount = 0;
             private int redTime = 0;
-
+            private Boolean is_circular;
+            private Boolean is_vertical;
+            private Boolean is_horizontal;
 
 
             public void changeScreen(long millisUntilFinished) {
@@ -116,16 +129,22 @@ public class TimerActivity extends WearableActivity {
                     Log.d("TAG", "pos3");
                     mTimerTextView.setVisibility(View.INVISIBLE);
                     mHorizontalView.setVisibility(View.VISIBLE);
+                    is_horizontal = true; is_circular = false; is_vertical=false;
+
                 } else if (t*2 + intervalLong <= pos && pos < t*2 + intervalLong*2) {
                     Log.d("TAG", "pos2");
 
                     mTimerTextView.setVisibility(View.INVISIBLE);
                     mVerticalView.setVisibility(View.VISIBLE);
+                    is_horizontal = false; is_circular = false; is_vertical=true;
+
                 } else if (t*3 + intervalLong*2 <= pos && pos < t*3 + intervalLong*3) {
                     Log.d("TAG", "pos1");
 
                     mSideView.setVisibility(View.INVISIBLE);
                     mCircularView.setVisibility(View.VISIBLE);
+                    is_horizontal = false; is_circular = true; is_vertical=false;
+
                 } else if (t*3 + intervalLong *3 <= pos || pos == 0) {
                     if (quad == 0) {
                         Log.d("TAG", "quad0");
@@ -161,8 +180,39 @@ public class TimerActivity extends WearableActivity {
                     if (doCount) {
                         if (last_stop - millisUntilFinished > 5000) {
                             mRelativeLayout.setBackgroundColor(0xffeb5757);
+
                             redTime += 1;
+                            if (is_circular) {
+                                motion_counts.put("cTime", motion_counts.get("cTime") + 1);
+                                Log.d("***********Timer", "circular Time");
+                            } else if (is_horizontal) {
+                                motion_counts.put("hTime", motion_counts.get("hTime") + 1);
+                                Log.d("*****************Timer", "horizontal Time");
+                            } else {
+                                motion_counts.put("vTime", motion_counts.get("vTime") + 1);
+                                Log.d("************Timer", "vertical Time");
+                            }
+
+
+
+
                             if (last_stop - millisUntilFinished <= 6000) {
+                                Log.d("Timer", "It is read so I am adding to ");
+
+                                // Add to Specific Counts
+                                if (is_circular) {
+                                    motion_counts.put("cCount", motion_counts.get("cCount") + 1);
+                                    Log.d("***********Timer", "circular");
+                                } else if (is_horizontal) {
+                                    motion_counts.put("hCount", motion_counts.get("hCount") + 1);
+                                    Log.d("*****************Timer", "horizontal");
+
+                                } else {
+                                    motion_counts.put("vCount", motion_counts.get("vCount") + 1);
+                                    Log.d("************Timer", "vertical");
+
+                                }
+
                                 redCount += 1;
                             }
                         }
@@ -272,8 +322,27 @@ public class TimerActivity extends WearableActivity {
 
             public void onFinish() {
                 Intent i = new Intent(TimerActivity.this, ResultActivity.class);
+
                 i.putExtra("REDCOUNT", redCount);
                 i.putExtra("REDTIME", redTime);
+
+                int cCount = motion_counts.get("cCount"); int cTime = motion_counts.get("cTime");
+                int vCount = motion_counts.get("vCount"); int vTime = motion_counts.get("vTime");
+                int hCount = motion_counts.get("hCount"); int hTime = motion_counts.get("hTime");
+
+                i.putExtra("CCOUNT", cCount); i.putExtra("CTIME", cTime);
+                i.putExtra("VCOUNT", vCount); i.putExtra("VTIME", vTime);
+                i.putExtra("HCOUNT", hCount); i.putExtra("HTIME", hTime);
+
+
+                Log.d("FINISHED", "circular C = " + cCount);
+                Log.d("FINISHED", "vertical C = " + vCount);
+                Log.d("FINISHED", "horizontal C = " + hCount);
+
+                Log.d("FINISHED", "circular C = " + cTime);
+                Log.d("FINISHED", "vertical C = " + vTime);
+                Log.d("FINISHED", "horizontal C = " + hTime);
+
                 startActivity(i);
             }
         };

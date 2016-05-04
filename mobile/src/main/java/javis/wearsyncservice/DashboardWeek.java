@@ -7,8 +7,10 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.androidplot.xy.BoundaryMode;
 import com.androidplot.xy.LineAndPointFormatter;
@@ -27,6 +29,8 @@ import java.util.Calendar;
 
 public class DashboardWeek extends SlidingMenuActivity {
 
+    final String SETTINGS_FILE = "BRUSH_SETTINGS";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -34,25 +38,36 @@ public class DashboardWeek extends SlidingMenuActivity {
         //setContentView(R.layout.dashboard_week);
         String[] days = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
 
-        SharedPreferences data = getPreferences(0); //for storing data
-        SharedPreferences.Editor editor = data.edit(); //to edit data
+//        SharedPreferences data = getPreferences(0); //for storing data
+//        SharedPreferences.Editor editor = data.edit(); //to edit data
+
+        SharedPreferences.Editor editor = getSharedPreferences("SCORES", MODE_PRIVATE).edit();
+        SharedPreferences data = getSharedPreferences("SCORES", MODE_PRIVATE);
+
+
+
+        String day_score = data.getString("score_day", "0_TBD_0_0_0");
+
         //if day of the week is Sunday, reset the data for the week
         Calendar c = Calendar.getInstance();
         int val = c.get(Calendar.DAY_OF_WEEK);
-        String day = days[val];
+        String day = days[val-1];
         if (day.equals("Sunday")) {
             resetData(data);
         }
-        //dummy data, get real data
-        editor.putInt("Sun", 90);
-        editor.putInt("Mon", 86);
-        editor.putInt("Tue", 85);
-        editor.putInt("Wed", 80);
-        editor.putInt("Thu", 75);
-        editor.putInt("Fri", 80);
-        editor.putInt("Sat", 85);
+//        Log.d("LISTENER", ""+ data.getFloat(day, 0f));
 
-        editor.apply();
+
+        //dummy data, get real data
+//        int r = data.getInt(day, 0);
+//        data.getInt("Monday", 0);
+//        data.getInt("Tuesday", 0);
+//        data.getInt("Wednesday", 0);
+//        data.getInt("Thursday", 0);
+//        data.getInt("Friday", 0);
+//        data.getInt("Saturday", 0);
+
+//        editor.apply();
 
         if (savedInstanceState!=null)
         {
@@ -74,6 +89,16 @@ public class DashboardWeek extends SlidingMenuActivity {
         ImageView img = (ImageView) findViewById(R.id.cropped_final);
         img.setImageDrawable(new RoundedAvatarDrawable(bmp));
 
+        SharedPreferences getSettings = getSharedPreferences(SETTINGS_FILE, MODE_PRIVATE);
+        String name = getSettings.getString("FIRST_NAME", "No Name");
+        Log.d("Settingszzzs Saved", name);
+        if (name.equals(""))
+        {
+            name = "Your child";
+        }
+        TextView mainNameView = (TextView) findViewById(R.id.NameWeek);
+        mainNameView.setText(name);
+
         //this is beginning of plot stuff
         XYPlot mySimpleXYPlot;
 
@@ -87,7 +112,7 @@ public class DashboardWeek extends SlidingMenuActivity {
 
 
         //create array of y-values to plot
-        Number[] scores = {data.getInt("Sun", 0), data.getInt("Mon", 0), data.getInt("Tue", 0), data.getInt("Wed", 0), data.getInt("Thu", 0), data.getInt("Fri", 0), data.getInt("Sat", 0)};
+        Number[] scores = {data.getFloat("Sunday", 0f), data.getFloat("Monday", 0f), data.getFloat("Tuesday", 0f), data.getFloat("Wednesday", 0f), data.getFloat("Thursday", 0f), data.getFloat("Friday", 0), data.getFloat("Saturday", 0f)};
 //        Number[] numbers = {20, 50, 80, 60, 75, 80, 90}; //index corresponds to x-value
         //figure out how to write to memory
 

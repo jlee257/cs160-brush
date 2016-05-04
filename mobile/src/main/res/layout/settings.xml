@@ -7,10 +7,94 @@
     <!--android:layout_height="match_parent"-->
     <!--android:background="@drawable/settings"></RelativeLayout>-->
 
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/buchanan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        xmlns:ProgressWheel="http://schemas.android.com/apk/res-auto"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        tools:context="edu.berkeley.cs160.trial.MainActivity">
+
+        <!--<RelativeLayout-->
+        <!--android:layout_width="150dp"-->
+        <!--android:layout_height="150dp"-->
+        <!--android:layout_centerVertical="true"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:id="@+id/daisy"></RelativeLayout>-->
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="92dp"
+            android:id="@+id/panel"
+            android:src="@drawable/circlepanel"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="75dp"
+            android:id="@+id/cropped_final"
+            android:layout_alignParentEnd="false"
+            android:layout_alignParentStart="false"
+            android:layout_marginRight="239dp"
+            android:layout_marginTop="8dp"
+            android:onClick="settings_photo_selection"
+            android:clickable="true" />
+
+        <ImageView
+            android:id="@+id/photo_bttn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/cropped_final"
+            android:layout_alignLeft="@id/cropped_final"
+            android:background="@drawable/settings_purple_photo_icon"
+            android:scaleType="fitXY"
+            android:layout_marginTop="50dp"
+            android:layout_marginLeft="60dp"
+            android:layout_marginRight="100dp"
+            android:layout_marginBottom="420dp"
+            android:clickable="true"
+            android:onClick="settings_photo_selection" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="has brushed his teeth once today."
+            android:id="@+id/pic_text"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="40dp"
+            android:textSize="14dp"
+            android:layout_alignLeft="@+id/cropped_final"
+            android:textColor="@color/darkGrey"
+            android:layout_marginLeft="100dp"
+            android:layout_marginBottom="5dp"
+            android:visibility="invisible" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ANDREW"
+            android:id="@+id/Name"
+            android:layout_alignParentTop="false"
+            android:layout_alignStart="@+id/pic_text"
+            android:layout_marginTop="30dp"
+            android:textColor="@color/darkGrey"
+            android:textSize="24dp"
+            android:layout_alignParentEnd="false"
+            android:layout_marginRight="140dp"
+            android:visibility="invisible" />
+    </RelativeLayout>
+
+
     <ScrollView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/scrollView" >
+        android:id="@+id/scrollView"
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true">
 
         <LinearLayout
             android:orientation="vertical"
@@ -24,8 +108,13 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="20dp"
-                android:id="@+id/first_name">
+                android:id="@+id/first_name"
+                android:descendantFocusability="beforeDescendants"
+                android:focusableInTouchMode="true"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="20dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -33,17 +122,18 @@
                     android:text="first name"
                     android:textColor="@color/darkGrey"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:id="@+id/textView2" />
+                    android:id="@+id/textView2"
+                    android:layout_alignParentEnd="true" />
 
                 <EditText
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="@color/orange"
                     android:id="@+id/editTextFirstName"
-                    android:text="Andrew"
-                    android:textAlignment="textEnd" />
+                    android:textAlignment="textEnd"
+                    android:layout_alignParentStart="true" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -66,17 +156,18 @@
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="last name"
                     android:textColor="@color/darkGrey"
-                    android:id="@+id/textView3" />
+                    android:id="@+id/textView3"
+                    android:layout_alignParentEnd="true" />
 
                 <EditText
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="@color/orange"
                     android:textAlignment="textEnd"
                     android:background="@android:color/transparent"
-                    android:text="Smith"
-                    android:id="@+id/editTextLastName" />
+                    android:id="@+id/editTextLastName"
+                    android:layout_alignParentStart="true" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -100,35 +191,49 @@
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="gender"
                     android:textColor="@color/darkGrey"
-                    android:id="@+id/textView4" />
+                    android:id="@+id/textView4"
+                    android:layout_alignParentEnd="true" />
 
-                <TextView
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="male"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:layout_toLeftOf="@+id/textView12"
-                    android:textColor="@color/orange"
-                    android:id="@+id/textViewMale" />
+                    android:orientation="horizontal"
+                    android:weightSum="3">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text=" / "
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:layout_toLeftOf="@+id/textViewFemale"
-                    android:textColor="@color/darkGrey"
-                    android:id="@+id/textView12" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="male"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="@color/orange"
+                        android:id="@+id/textViewMale"
+                        android:layout_alignParentEnd="false"
+                        android:layout_alignParentStart="true"
+                        android:layout_toRightOf="@+id/textView12"
+                        android:layout_weight="1"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="female"
-                    android:textColor="@color/darkGrey"
-                    android:id="@+id/textViewFemale" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=" / "
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:layout_toLeftOf="@+id/textViewFemale"
+                        android:textColor="@color/darkGrey"
+                        android:id="@+id/textView12"
+                        android:layout_alignParentEnd="false"
+                        android:layout_weight="1"/>
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="female"
+                        android:textColor="@color/darkGrey"
+                        android:id="@+id/textViewFemale"
+                        android:layout_weight="1"/>
+
+                </LinearLayout>
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="2dp"
@@ -151,10 +256,11 @@
                     android:text="age"
                     android:textColor="@color/darkGrey"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:id="@+id/textView7" />
+                    android:id="@+id/textView7"
+                    android:layout_alignParentEnd="true" />
 
                 <EditText
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:inputType="number"
                     android:textAppearance="?android:attr/textAppearanceMedium"
@@ -162,7 +268,9 @@
                     android:background="@android:color/transparent"
                     android:textAlignment="textEnd"
                     android:text="5"
-                    android:id="@+id/editTextAge" />
+                    android:id="@+id/editTextAge"
+                    android:layout_alignParentEnd="false"
+                    android:layout_alignParentStart="false" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -186,34 +294,46 @@
                     android:text="dominant hand"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="@color/darkGrey"
-                    android:id="@+id/textView8" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="left"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:layout_toLeftOf="@+id/textView11"
-                    android:textColor="@color/orange"
-                    android:id="@+id/textViewLeft" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text=" / "
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:layout_toLeftOf="@+id/textViewRight"
-                    android:textColor="@color/darkGrey"
-                    android:id="@+id/textView11" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="right"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:id="@+id/textView8"
                     android:layout_alignParentEnd="true"
-                    android:textColor="@color/darkGrey"
-                    android:id="@+id/textViewRight" />
+                    android:layout_alignParentStart="false" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:weightSum="3">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="left"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:layout_toLeftOf="@+id/textView11"
+                        android:textColor="@color/orange"
+                        android:id="@+id/textViewLeft"
+                        android:layout_weight="1"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=" / "
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:layout_toLeftOf="@+id/textViewRight"
+                        android:textColor="@color/darkGrey"
+                        android:id="@+id/textView11"
+                        android:layout_weight="1"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="right"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:layout_alignParentEnd="true"
+                        android:textColor="@color/darkGrey"
+                        android:id="@+id/textViewRight"
+                        android:layout_weight="1"/>
+
+                </LinearLayout>
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -238,6 +358,23 @@
         <RelativeLayout
             android:layout_width="0dp"
             android:layout_height="70dp"
+            android:id="@+id/edit_button"
+            android:layout_weight="1"
+            android:background="@color/lightGrey"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="SAVE"
+                android:textColor="@color/colorPrimary"
+                android:id="@+id/textView13" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="70dp"
             android:layout_weight="1"
             android:gravity="center"
             android:background="@color/lightGrey"
@@ -250,23 +387,6 @@
                 android:text="CANCEL"
                 android:textColor="@color/colorPrimary"
                 android:id="@+id/textView" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="70dp"
-            android:id="@+id/edit_button"
-            android:layout_weight="1"
-            android:background="@color/lightGrey"
-            android:gravity="center">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="EDIT"
-                android:textColor="@color/colorPrimary"
-                android:id="@+id/textView13" />
         </RelativeLayout>
     </LinearLayout>
 

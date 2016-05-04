@@ -33,7 +33,9 @@ public class signUpCare extends Activity {
     }
 
     public void toSignUpWithInfoName(View v) {
-        SharedPreferences settings = getSharedPreferences(signUpBrush.PREFS_NAME, 0);
+        Intent next = new Intent(this, RegistrationActivity.class);
+        startActivity(next);
+        /*SharedPreferences settings = getSharedPreferences(signUpBrush.PREFS_NAME, 0);
         //Get "hasLoggedIn" value. If the value doesn't exist yet false is returned
         boolean hasLoggedIn = settings.getBoolean("hasLoggedIn", false);
 
@@ -49,7 +51,7 @@ public class signUpCare extends Activity {
 
             Intent next = new Intent(this, signUpWithInfoName.class);
             startActivity(next);
-        }
+        }*/
     }
 
     public void toBrush(View v) {

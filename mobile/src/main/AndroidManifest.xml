@@ -10,7 +10,8 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:largeHeap="true">
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
@@ -50,6 +51,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
             -->
+
         </activity>
         <activity android:name=".signUpWithInfoName" />
         <activity android:name=".toSignUpWithInfoAge" />
@@ -58,8 +60,23 @@
         <activity android:name=".updatedDashboard" />
         <activity android:name=".updatedDashboardGraph" />
         <activity android:name=".updatedDashboardHome" />
-        <activity android:name=".notificationsSet" />
-        <activity android:name=".settings" />
+        <activity
+            android:name=".notificationsSet"
+            android:theme="@style/SpecialNotifTheme"></activity>
+        <!--<activity
+            android:name=".settings"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">-->
+        <activity
+            android:name=".settings"
+            android:windowSoftInputMode="adjustNothing">
+            <!--
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            -->
+        </activity>
         <activity android:name=".simplePlot" />
         <activity android:name=".pictureSelect" />
         <activity
@@ -94,12 +111,11 @@
             android:name=".DashboardDay"
             android:label="Dashboard"
             android:theme="@style/AppTheme">
-            <intent-filter>
+            <!--<intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        >
+            </intent-filter>-->
         </activity>
         <!-- android:theme="@style/Theme.AppCompat" -->
         <activity android:name=".unupdatedDashboardGraph" />
@@ -110,7 +126,9 @@
         <activity
             android:name=".signUpCare"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
-        <activity android:name=".SlidingMenuActivity">
+        <activity android:name=".SlidingMenuActivity"
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar">
+
 
             <!--
             <intent-filter>
@@ -171,10 +189,23 @@
             </intent-filter>
         </service>
 
+        <!-- Need this for Alarms to work-->
+        <service
+        android:name=".AlarmService"
+        android:enabled="true" />
+         <receiver android:name=".AlarmReceiver" />
+
         <activity
             android:name=".NotificationView"
             android:label="@string/title_activity_notification_view"
-            android:theme="@style/Theme.AppCompat" />
+            android:theme="@style/SpecialNotifTheme">
+            <!--<intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>-->
+        </activity>
+            <!--android:theme="@style/Theme.AppCompat.Light.DarkActionBar" />-->
         <activity
             android:name=".CustomDialog"
             android:theme="@style/FoxDialogueTheme" />
@@ -182,15 +213,24 @@
         <activity
             android:name=".RegistrationActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.MAIN" />-->
 
-                <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>-->
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity>
-        <activity android:name=".Registration2Activity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        <activity
+            android:name=".Registration2Activity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+        <activity android:name=".HiddenFirstActivity"
+            android:theme="@android:style/Theme.NoDisplay">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 

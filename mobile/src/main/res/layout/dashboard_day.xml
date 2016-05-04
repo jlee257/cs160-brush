@@ -49,7 +49,8 @@
             android:layout_alignLeft="@+id/cropped_final"
             android:textColor="@color/darkGrey"
             android:layout_marginLeft="100dp"
-            android:layout_marginBottom="5dp" />
+            android:layout_marginBottom="5dp"
+            android:visibility="invisible" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -58,12 +59,12 @@
             android:id="@+id/Name"
             android:layout_alignParentTop="false"
             android:layout_alignStart="@+id/pic_text"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="30dp"
             android:textColor="@color/darkGrey"
-            android:textStyle="bold"
-            android:textSize="16dp"
-            android:layout_alignParentEnd="false"
-            android:layout_marginRight="140dp" />
+            android:textSize="24dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginLeft="100dp"
+            android:layout_alignParentStart="false" />
     </RelativeLayout>
     <RelativeLayout
         android:id="@+id/score_list"
@@ -122,5 +123,6 @@
         android:layout_above="@+id/relativeLayout"
         android:layout_alignParentStart="true"
         android:layout_marginStart="60dp"
-        android:layout_marginBottom="56dp" />
+        android:layout_marginBottom="56dp"
+        android:visibility="invisible" />
 </RelativeLayout>

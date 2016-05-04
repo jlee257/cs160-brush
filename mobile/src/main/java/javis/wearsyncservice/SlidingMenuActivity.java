@@ -5,12 +5,15 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewStub;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
@@ -37,6 +40,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.ikimuhendis.ldrawer.ActionBarDrawerToggle;
 import com.ikimuhendis.ldrawer.DrawerArrowDrawable;
@@ -60,7 +64,7 @@ public class SlidingMenuActivity extends Activity {
         this.title = (String)savedInstanceState.get("TITLE");
         int layout = (Integer)savedInstanceState.get("LAYOUT");
         int layout_id = (Integer)savedInstanceState.get("LAYOUT_ID");
-        set_up_sliding_menu(layout,layout_id);
+        set_up_sliding_menu(layout, layout_id);
 
     }
 
@@ -71,26 +75,16 @@ public class SlidingMenuActivity extends Activity {
         ab.setHomeButtonEnabled(true);
         ab.setTitle(this.title);
 
-        LayoutInflater inflater = (LayoutInflater)
+        ViewStub stub = (ViewStub) findViewById(R.id.layout_stub);
+        stub.setLayoutResource(layout);
+        View inflated = stub.inflate();
+
+        /*LayoutInflater inflater = (LayoutInflater)
                 this.getSystemService(LAYOUT_INFLATER_SERVICE);
         View childLayout = inflater.inflate(layout,
                 (ViewGroup) findViewById(layout_id));
         DrawerLayout parent = (DrawerLayout)findViewById(R.id.drawer_layout);
-        parent.addView(childLayout);
-
-       /* put an image in line with the action bar
-       ActionBar actionBar = getActionBar();
-        actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        ImageView imageView = new ImageView(actionBar.getThemedContext());
-        imageView.setScaleType(ImageView.ScaleType.CENTER);
-        imageView.setImageResource(R.mipmap.ic_launcher);
-        ActionBar.LayoutParams layoutParams = new ActionBar.LayoutParams(
-                ActionBar.LayoutParams.WRAP_CONTENT,
-                ActionBar.LayoutParams.WRAP_CONTENT, Gravity.LEFT
-                | Gravity.CENTER_VERTICAL);
-        layoutParams.rightMargin = 40;
-        imageView.setLayoutParams(layoutParams);
-        actionBar.setCustomView(imageView);*/
+        parent.addView(childLayout);*/
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.navdrawer);
@@ -134,8 +128,8 @@ public class SlidingMenuActivity extends Activity {
         {
             list.add(values[i]);
         }
-        //ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-        //        android.R.layout.simple_list_item_1, android.R.id.text1, values);
+       /* ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_list_item_1, android.R.id.text1, values);*/
         final CustomArrayAdapter adapter = new CustomArrayAdapter(this,
                 android.R.layout.simple_list_item_1, list);
 
@@ -149,24 +143,25 @@ public class SlidingMenuActivity extends Activity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                /*switch(position)
+                Log.d("BAZOOKA", position+"");
+                switch(position)
                 {
-                    case 0: Log.d("BAZOOKA", "Pressed Dashboard");
+                    case 1: Log.d("BAZOOKA", "Pressed Dashboard");
                         Intent i0 = new Intent(mContext, DashboardDay.class);
                         i0.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(i0);
                         break;
-                    case 1:Log.d("BAZOOKA", "Pressed Notifications");
+                    case 2:Log.d("BAZOOKA", "Pressed Notifications");
                         Intent i1 = new Intent(mContext, NotificationView.class);
                         i1.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(i1);
                         break;
-                    case 2:Log.d("BAZOOKA", "Pressed Settings");
+                    case 3:Log.d("BAZOOKA", "Pressed Settings");
                         Intent i2 = new Intent(mContext, settings.class);
                         i2.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(i2);
                         break;
-                }*/
+                }
 
                 /*switch (position) {
                     case 0:
@@ -220,6 +215,18 @@ public class SlidingMenuActivity extends Activity {
     }
 
 
+    public void onRowClick(View w)
+    /**
+     * DOESN'T GET CALLED
+     * Called on click of a particular row in the sliding menu
+     */
+    {
+        LinearLayout row = (LinearLayout)w.findViewById(R.id.row);
+        TextView name = (TextView)row.findViewById(R.id.Name);
+        Log.d("BAZOOKA", name.getText().toString());
+
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
@@ -230,6 +237,15 @@ public class SlidingMenuActivity extends Activity {
             }
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (mDrawerLayout.isDrawerOpen(mDrawerList)) {
+            mDrawerLayout.closeDrawer(mDrawerList);
+        } else {
+            super.onBackPressed();
+        }
     }
 
     @Override
