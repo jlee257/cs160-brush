@@ -91,8 +91,8 @@ public class DashboardWeek extends SlidingMenuActivity {
 //        Number[] numbers = {20, 50, 80, 60, 75, 80, 90}; //index corresponds to x-value
         //figure out how to write to memory
 
-        mySimpleXYPlot.getGraphWidget().getBackgroundPaint().setColor(Color.rgb(155, 24, 155));// sets axis colors
-        mySimpleXYPlot.getGraphWidget().getGridBackgroundPaint().setColor(Color.rgb(155, 24, 155)); //sets the graph background color
+        mySimpleXYPlot.getGraphWidget().getBackgroundPaint().setColor(getResources().getColor(R.color.purple));// sets axis colors
+        mySimpleXYPlot.getGraphWidget().getGridBackgroundPaint().setColor(getResources().getColor(R.color.purple)); //sets the graph background color
 
         // Domain
         mySimpleXYPlot.setDomainStep(XYStepMode.INCREMENT_BY_VAL, scores.length);
@@ -139,6 +139,11 @@ public class DashboardWeek extends SlidingMenuActivity {
         mySimpleXYPlot.getGraphWidget().getDomainGridLinePaint().setColor(Color.TRANSPARENT);
         mySimpleXYPlot.getGraphWidget().getRangeGridLinePaint().setColor(Color.TRANSPARENT);
 
+        //remove black background
+//        mySimpleXYPlot.getGraphWidget().getDomainLabelPaint()(null);
+//        mySimpleXYPlot.getGraphWidget().getDomainGridLinePaint().setColor(Color.MAGENTA);
+//        mySimpleXYPlot.getGraphWidget().getDomainTickLabelPaint().setColor(Color.MAGENTA);
+//        mySimpleXYPlot.getGraphWidget().getBackgroundPaint().setColor(getResources().getColor(R.color.purple));
 
 
 

@@ -89,6 +89,7 @@
                 android:layout_marginRight="10px"
                 android:layout_marginBottom="10px"
                 ap:label="Your child's weekly scores"
+                ap:labelTextSize="20sp"
                 ap:rangeLabel="score"
                 ap:rangeLabelTextSize="13sp"
                 ap:domainLabel="day"
