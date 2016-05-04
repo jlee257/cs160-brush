@@ -104,9 +104,9 @@ public class TimerActivity extends WearableActivity {
 
             private int redCount = 0;
             private int redTime = 0;
-            private Boolean is_circular;
-            private Boolean is_vertical;
-            private Boolean is_horizontal;
+            private Boolean is_circular = true;
+            private Boolean is_vertical = false;
+            private Boolean is_horizontal = false;
 
 
             public void changeScreen(long millisUntilFinished) {
@@ -176,9 +176,9 @@ public class TimerActivity extends WearableActivity {
 
                 // color code
                 mTimerTextView.setText(millisToString(millisUntilFinished, initialTime*3));
-                if (speed < 37) {
+                if (speed < 40) {
                     if (doCount) {
-                        if (last_stop - millisUntilFinished > 5000) {
+                        if (last_stop - millisUntilFinished > 2000) {
                             mRelativeLayout.setBackgroundColor(0xffeb5757);
 
                             redTime += 1;
@@ -196,7 +196,7 @@ public class TimerActivity extends WearableActivity {
 
 
 
-                            if (last_stop - millisUntilFinished <= 6000) {
+                            if (last_stop - millisUntilFinished <= 3000) {
                                 Log.d("Timer", "It is read so I am adding to ");
 
                                 // Add to Specific Counts

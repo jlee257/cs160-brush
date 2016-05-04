@@ -13,8 +13,8 @@ public class MirroredTextView extends TextView {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        canvas.translate(getWidth(), 0);
-        canvas.scale(-1, 1);
+        canvas.translate(0, getHeight());
+        canvas.scale(1, -1);
         super.onDraw(canvas);
     }
 
