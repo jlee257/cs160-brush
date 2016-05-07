@@ -68,7 +68,7 @@ public class AccelService extends WearableListenerService implements SensorEvent
 
 
 
-                float speed = Math.abs(x+y+z - last_x - last_y - last_z)
+                float speed = (Math.abs(x- last_x) + Math.abs(y - last_y) + Math.abs(z - last_z))
                         / diffTime * 10000;
 
                 //send Speed data to TimerActivity
